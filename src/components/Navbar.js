@@ -50,7 +50,7 @@ export default function Navbar(props) {
 }
 
 Navbar.propTypes = {
-    title: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
     aboutText : PropTypes.string.isRequired
 }
 
