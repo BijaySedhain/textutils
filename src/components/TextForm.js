@@ -4,23 +4,34 @@ import React, {useState} from 'react'
 export default function TextForm(props) {
 
   const handleUpClick = () => {
-    // console.log("UpperCase was Clicked "+ text)
     let newText = text.toUpperCase();
     setText(newText);
   }
   const handleLowClick = () => {
-    // console.log("UpperCase was Clicked "+ text)
     let newText = text.toLowerCase();
     setText(newText);
   }
-  const handleOnChange = (event) => {
-    setText(event.target.value);
-    // console.log("OnChange")
+  const handleSenClick = () => {
+    let newText = text.toLowerCase().charAt(0).toUpperCase() + text.slice(1);
+    setText(newText);
   }
 
-const [text, setText] = useState('Enter Text Here');
+  const handleTitleClick = () => {
+    let words = text.toLowerCase().split(' ');
+    for (let i = 0; i < words.length; i++) {
+      words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+    }
 
-// setText("New Text");
+    setText(words.join(' '));
+  }
+  const handleOnChange = (event) => {
+    setText(event.target.value);
+  
+  }
+
+
+const [text, setText] = useState('');
+
   return (
     <>
     <div className="container">
@@ -30,9 +41,11 @@ const [text, setText] = useState('Enter Text Here');
         </div>  
         <button className="btn btn-primary mx-1" onClick={handleUpClick}>Conver to UpperCase</button>
         <button className="btn btn-primary mx-1" onClick={handleLowClick}>Conver to LowerCase</button>
+        <button className="btn btn-primary mx-1" onClick={handleSenClick}>Convert to Sentence Case</button>
+        <button className="btn btn-primary mx-1" onClick={handleTitleClick}>Convert to Title Case</button>
     </div>
     <div className="containter my-2">
-      <h1>Your Text Summary</h1>
+      <h2>Your Text Summary</h2>
       <p>{text.split(" ").length-1} words and {text.length} characters</p>
       <p>{0.008* (text.split(" ").length)} Minutes to read</p>
       <h2>Preview</h2>
